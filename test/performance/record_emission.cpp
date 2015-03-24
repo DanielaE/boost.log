@@ -90,7 +90,7 @@ void test(unsigned int record_count, boost::barrier& bar)
     }
 }
 
-int main(int argc, char* argv[])
+int main(int, char*[])
 {
     std::cout << "Test config: " << THREAD_COUNT << " threads, " << SINK_COUNT << " sinks, " << RECORD_COUNT << " records" << std::endl;
 //__debugbreak();
