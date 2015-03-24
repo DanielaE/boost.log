@@ -34,6 +34,10 @@
 #pragma once
 #endif
 
+#ifdef BOOST_MSVC
+# pragma warning(push)
+# pragma warning(disable: 4702) // unreachable code
+#endif
 namespace boost {
 
 BOOST_LOG_OPEN_NAMESPACE
@@ -366,6 +370,10 @@ inline visitation_result attribute_value::visit(VisitorT visitor) const
 BOOST_LOG_CLOSE_NAMESPACE // namespace log
 
 } // namespace boost
+
+#ifdef BOOST_MSVC
+# pragma warning(pop)
+#endif
 
 #include <boost/log/detail/footer.hpp>
 
