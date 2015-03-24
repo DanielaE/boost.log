@@ -91,7 +91,7 @@ public:
      * It effectively associates the attribute with the scope_list_formatter class
      */
     formatter_type create_formatter(
-        logging::attribute_name const& attr_name, args_map const& args)
+        logging::attribute_name const& attr_name, args_map const&)
     {
         return formatter_type(scope_list_formatter(attr_name));
     }
@@ -128,7 +128,7 @@ void try_logging()
     BOOST_LOG_SEV(lg, error) << "This is a error severity record";
 }
 
-int main(int argc, char* argv[])
+int main(int, char*[])
 {
     try
     {

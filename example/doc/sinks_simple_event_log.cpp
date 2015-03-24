@@ -65,7 +65,7 @@ void init_logging()
 }
 //]
 
-int main(int argc, char* argv[])
+int main(int, char*[])
 {
     try
     {

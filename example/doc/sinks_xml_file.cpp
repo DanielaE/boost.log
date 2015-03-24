@@ -121,7 +121,7 @@ void init_logging()
 
 enum { LOG_RECORDS_TO_WRITE = 2000 };
 
-int main(int argc, char* argv[])
+int main(int, char*[])
 {
     try
     {

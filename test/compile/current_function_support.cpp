@@ -24,7 +24,7 @@
 #include <boost/type_traits/is_array.hpp>
 
 template< typename T >
-void check(T& param)
+void check(T&)
 {
     BOOST_STATIC_ASSERT(boost::is_array< T >::value);
 }

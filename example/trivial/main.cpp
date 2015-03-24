@@ -19,7 +19,7 @@
 #include <boost/log/core.hpp>
 #include <boost/log/expressions.hpp>
 
-int main(int argc, char* argv[])
+int main(int, char*[])
 {
     // Trivial logging: all log records are written into a file
     BOOST_LOG_TRIVIAL(trace) << "A trace severity message";

@@ -29,6 +29,7 @@ class exception_watcher
 {
     unsigned int& m_count;
 
+    exception_watcher& operator=(const exception_watcher&);
 public:
     explicit exception_watcher(unsigned int& count) : m_count(count) {}
     ~exception_watcher() { m_count = boost::log::aux::unhandled_exception_count(); }

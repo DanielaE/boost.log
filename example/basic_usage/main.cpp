@@ -73,7 +73,7 @@ inline std::basic_ostream< CharT, TraitsT >& operator<< (
     return strm;
 }
 
-int main(int argc, char* argv[])
+int main(int, char*[])
 {
     // This is a simple tutorial/example of Boost.Log usage
 

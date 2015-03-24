@@ -42,6 +42,8 @@ namespace {
         {
             m_pExceptionType = &typeid(std::runtime_error);
         }
+    private:
+        my_handler1& operator=(const my_handler1&);
     };
 
     struct my_handler2
@@ -61,6 +63,8 @@ namespace {
         {
             m_pExceptionType = &typeid(std::runtime_error);
         }
+    private:
+        my_handler2& operator=(const my_handler2&);
     };
 
     struct my_handler1_nothrow
@@ -83,6 +87,8 @@ namespace {
         {
             m_pExceptionType = &typeid(void);
         }
+    private:
+        my_handler1_nothrow& operator=(const my_handler1_nothrow&);
     };
 
     struct my_handler2_nothrow
@@ -106,6 +112,8 @@ namespace {
         {
             m_pExceptionType = &typeid(void);
         }
+    private:
+        my_handler2_nothrow& operator=(const my_handler2_nothrow&);
     };
 
     struct my_exception {};
@@ -125,6 +133,8 @@ namespace {
 
             explicit impl(T const& fun) : m_Fun(fun) {}
             void invoke() { m_Fun(); }
+        private:
+            impl& operator=(const impl&);
         };
 
     private:

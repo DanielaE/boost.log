@@ -158,6 +158,8 @@ namespace {
         }
 
     private:
+        predicate& operator=(const predicate&);
+
         unsigned int& m_PresentCounter;
         bool& m_Result;
     };
