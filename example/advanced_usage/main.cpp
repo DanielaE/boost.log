@@ -78,7 +78,7 @@ int foo(src::logger& lg)
     return 10;
 }
 
-int main(int argc, char* argv[])
+int main(int, char*[])
 {
     // This is a in-depth tutorial/example of Boost.Log usage
 
