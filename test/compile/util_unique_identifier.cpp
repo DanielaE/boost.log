@@ -21,6 +21,10 @@
 #define BOOST_LOG_AUX_UNUSED_ATTR
 #endif
 
+#ifdef BOOST_MSVC
+# pragma warning(disable: 4189) // local variable is initialized but not referenced
+#endif
+
 int main(int, char*[])
 {
     // Names with the same prefixes may coexist in different lines

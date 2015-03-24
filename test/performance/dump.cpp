@@ -64,7 +64,7 @@ void test(std::size_t block_size)
         << " MiB per second)" << std::endl;
 }
 
-int main(int argc, char* argv[])
+int main(int, char*[])
 {
     test(32);
     test(128);

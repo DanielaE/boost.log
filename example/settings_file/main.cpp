@@ -55,7 +55,7 @@ void try_logging()
     BOOST_LOG_SEV(lg, critical) << "This is a critical severity record";
 }
 
-int main(int argc, char* argv[])
+int main(int, char*[])
 {
     try
     {

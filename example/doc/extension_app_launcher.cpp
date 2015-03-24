@@ -45,7 +45,7 @@ public:
 
 //[ example_extension_app_launcher_consume
 // The function consumes the log records that come from the frontend
-void app_launcher::consume(logging::record_view const& rec, string_type const& command_line)
+void app_launcher::consume(logging::record_view const&, string_type const& command_line)
 {
     std::system(command_line.c_str());
 }
