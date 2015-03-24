@@ -77,7 +77,7 @@ BOOST_LOG_ATTRIBUTE_KEYWORD(_timestamp, "TimeStamp", boost::posix_time::ptime)
 BOOST_LOG_ATTRIBUTE_KEYWORD(_uptime, "Uptime", attrs::timer::value_type)
 BOOST_LOG_ATTRIBUTE_KEYWORD(_scope, "Scope", attrs::named_scope::value_type)
 
-int main(int argc, char* argv[])
+int main(int, char*[])
 {
     // This is a simple tutorial/example of Boost.Log usage
 
