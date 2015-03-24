@@ -97,6 +97,8 @@ namespace {
         }
 
     private:
+        attr_value_generator& operator=(const attr_value_generator&);
+
         unsigned int& m_CallsCount;
     };
 

@@ -46,6 +46,8 @@ namespace {
         }
 
     private:
+        receiver& operator=(const receiver&);
+
         T& m_Val;
     };
 

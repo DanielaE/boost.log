@@ -297,6 +297,10 @@ BOOST_AUTO_TEST_CASE_TEMPLATE(operator_overriding, CharT, char_types)
 
 namespace {
 
+#ifdef BOOST_MSVC
+# pragma warning(disable: 4309) // truncation of constant value
+#endif
+
 const char narrow_chars[] =
 {
     static_cast< char >(0xd0), static_cast< char >(0x9f), static_cast< char >(0xd1), static_cast< char >(0x80),
