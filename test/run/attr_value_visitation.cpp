@@ -81,7 +81,7 @@ namespace {
             BOOST_CHECK_EQUAL(m_Expected, string_expected);
             BOOST_CHECK_EQUAL(m_String, value);
         }
-        void operator() (char value)
+        void operator() (char)
         {
             // This one should not be called
             BOOST_ERROR("The unexpected operator() has been called");

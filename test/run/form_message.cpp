@@ -24,6 +24,10 @@
 #include "char_definitions.hpp"
 #include "make_record.hpp"
 
+#ifdef BOOST_MSVC
+# pragma warning(disable: 4709) // comma operator within array index expression
+#endif
+
 namespace logging = boost::log;
 namespace attrs = logging::attributes;
 namespace expr = logging::expressions;
