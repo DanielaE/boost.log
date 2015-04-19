@@ -41,8 +41,8 @@ namespace aux {
 // MinGW32, at least the older versions up until gcc 4.7, also provide the non-conforming interface.
 inline int vsnprintf(char* buf, std::size_t size, const char* format, std::va_list args)
 {
-    int n = _vsnprintf(buf, size, format, args);
-    if (static_cast< unsigned int >(n) >= size)
+    int n = _vsnprintf_s(buf, size, _TRUNCATE, format, args);
+    if (n < 0)
     {
         n = static_cast< int >(size);
         buf[size - 1] = '\0';
@@ -53,8 +53,8 @@ inline int vsnprintf(char* buf, std::size_t size, const char* format, std::va_li
 #   ifdef BOOST_LOG_USE_WCHAR_T
 inline int vswprintf(wchar_t* buf, std::size_t size, const wchar_t* format, std::va_list args)
 {
-    int n = _vsnwprintf(buf, size, format, args);
-    if (static_cast< unsigned int >(n) >= size)
+    int n = _vsnwprintf_s(buf, size, _TRUNCATE, format, args);
+    if (n < 0)
     {
         n = static_cast< int >(size);
         buf[size - 1] = L'\0';
