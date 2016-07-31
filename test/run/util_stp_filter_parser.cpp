@@ -142,9 +142,9 @@ BOOST_AUTO_TEST_CASE(int_relation)
 // Tests for floating point relation filter
 BOOST_AUTO_TEST_CASE(fp_relation)
 {
-    attrs::constant< float > attr1(2.5);
-    attrs::constant< float > attr2(8.8);
-    attrs::constant< double > attr3(-9.1);
+    attrs::constant< float > attr1(2.5f);
+    attrs::constant< float > attr2(8.8f);
+    attrs::constant< double > attr3(-9.1f);
     attrs::constant< float > attr4(0);
     attr_set set1, set2, set3;
 
