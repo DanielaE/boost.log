@@ -28,6 +28,10 @@
 #include "char_definitions.hpp"
 #include "make_record.hpp"
 
+#if defined(BOOST_MSVC)
+#pragma warning(disable: 4127) // conditional expression is constant
+#endif
+
 namespace logging = boost::log;
 namespace attrs = logging::attributes;
 namespace expr = logging::expressions;
