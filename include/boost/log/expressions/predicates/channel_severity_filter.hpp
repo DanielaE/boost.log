@@ -46,6 +46,10 @@ BOOST_LOG_OPEN_NAMESPACE
 
 namespace expressions {
 
+namespace detail {
+    struct none {};
+}
+
 template<
     typename ChannelT,
     typename SeverityT,
@@ -53,7 +57,7 @@ template<
     typename SeverityFallbackT = fallback_to_none,
     typename ChannelOrderT = less,
     typename SeverityCompareT = greater_equal,
-    typename AllocatorT = std::allocator< void >
+    typename AllocatorT = std::allocator< detail::none >
 >
 class channel_severity_filter_terminal
 {
@@ -227,7 +231,7 @@ template<
     typename SeverityFallbackT = fallback_to_none,
     typename ChannelOrderT = less,
     typename SeverityCompareT = greater_equal,
-    typename AllocatorT = std::allocator< void >,
+    typename AllocatorT = std::allocator< detail::none >,
     template< typename > class ActorT = phoenix::actor
 >
 class channel_severity_filter_actor :
@@ -318,10 +322,10 @@ channel_severity_filter(attribute_name const& channel_name, attribute_name const
 
 //! \overload
 template< typename SeverityT, typename ChannelDescriptorT, template< typename > class ActorT >
-BOOST_FORCEINLINE channel_severity_filter_actor< typename ChannelDescriptorT::value_type, SeverityT, fallback_to_none, fallback_to_none, less, greater_equal, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< typename ChannelDescriptorT::value_type, SeverityT, fallback_to_none, fallback_to_none, less, greater_equal, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_keyword< ChannelDescriptorT, ActorT > const& channel_keyword, attribute_name const& severity_name)
 {
-    typedef channel_severity_filter_actor< typename ChannelDescriptorT::value_type, SeverityT, fallback_to_none, fallback_to_none, less, greater_equal, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< typename ChannelDescriptorT::value_type, SeverityT, fallback_to_none, fallback_to_none, less, greater_equal, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_keyword.get_name(), severity_name) }};
     return result_type(act);
@@ -329,10 +333,10 @@ channel_severity_filter(attribute_keyword< ChannelDescriptorT, ActorT > const& c
 
 //! \overload
 template< typename ChannelT, typename SeverityDescriptorT, template< typename > class ActorT >
-BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, greater_equal, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, greater_equal, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_name const& channel_name, attribute_keyword< SeverityDescriptorT, ActorT > const& severity_keyword)
 {
-    typedef channel_severity_filter_actor< ChannelT, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, greater_equal, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< ChannelT, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, greater_equal, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_name, severity_keyword.get_name()) }};
     return result_type(act);
@@ -340,10 +344,10 @@ channel_severity_filter(attribute_name const& channel_name, attribute_keyword< S
 
 //! \overload
 template< typename ChannelDescriptorT, typename SeverityDescriptorT, template< typename > class ActorT >
-BOOST_FORCEINLINE channel_severity_filter_actor< typename ChannelDescriptorT::value_type, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, greater_equal, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< typename ChannelDescriptorT::value_type, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, greater_equal, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_keyword< ChannelDescriptorT, ActorT > const& channel_keyword, attribute_keyword< SeverityDescriptorT, ActorT > const& severity_keyword)
 {
-    typedef channel_severity_filter_actor< typename ChannelDescriptorT::value_type, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, greater_equal, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< typename ChannelDescriptorT::value_type, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, greater_equal, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_keyword.get_name(), severity_keyword.get_name()) }};
     return result_type(act);
@@ -351,10 +355,10 @@ channel_severity_filter(attribute_keyword< ChannelDescriptorT, ActorT > const& c
 
 //! \overload
 template< typename SeverityT, typename ChannelT, typename ChannelFallbackT, typename ChannelTagT, template< typename > class ActorT >
-BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, fallback_to_none, less, greater_equal, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, fallback_to_none, less, greater_equal, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_actor< ChannelT, ChannelFallbackT, ChannelTagT, ActorT > const& channel_placeholder, attribute_name const& severity_name)
 {
-    typedef channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, fallback_to_none, less, greater_equal, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, fallback_to_none, less, greater_equal, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_placeholder.get_name(), severity_name, channel_placeholder.get_fallback_policy()) }};
     return result_type(act);
@@ -362,10 +366,10 @@ channel_severity_filter(attribute_actor< ChannelT, ChannelFallbackT, ChannelTagT
 
 //! \overload
 template< typename ChannelT, typename SeverityT, typename SeverityFallbackT, typename SeverityTagT, template< typename > class ActorT >
-BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, fallback_to_none, SeverityFallbackT, less, greater_equal, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, fallback_to_none, SeverityFallbackT, less, greater_equal, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_name const& channel_name, attribute_actor< SeverityT, SeverityFallbackT, SeverityTagT, ActorT > const& severity_placeholder)
 {
-    typedef channel_severity_filter_actor< ChannelT, SeverityT, fallback_to_none, SeverityFallbackT, less, greater_equal, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< ChannelT, SeverityT, fallback_to_none, SeverityFallbackT, less, greater_equal, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_name, severity_placeholder.get_name(), fallback_to_none(), severity_placeholder.get_fallback_policy()) }};
     return result_type(act);
@@ -373,10 +377,10 @@ channel_severity_filter(attribute_name const& channel_name, attribute_actor< Sev
 
 //! \overload
 template< typename ChannelT, typename ChannelFallbackT, typename ChannelTagT, typename SeverityT, typename SeverityFallbackT, typename SeverityTagT, template< typename > class ActorT >
-BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, SeverityFallbackT, less, greater_equal, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, SeverityFallbackT, less, greater_equal, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_actor< ChannelT, ChannelFallbackT, ChannelTagT, ActorT > const& channel_placeholder, attribute_actor< SeverityT, SeverityFallbackT, SeverityTagT, ActorT > const& severity_placeholder)
 {
-    typedef channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, SeverityFallbackT, less, greater_equal, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, SeverityFallbackT, less, greater_equal, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_placeholder.get_name(), severity_placeholder.get_name(), channel_placeholder.get_fallback_policy(), severity_placeholder.get_fallback_policy()) }};
     return result_type(act);
@@ -396,10 +400,10 @@ channel_severity_filter(attribute_name const& channel_name, attribute_name const
 
 //! \overload
 template< typename SeverityT, typename ChannelDescriptorT, template< typename > class ActorT, typename SeverityCompareT >
-BOOST_FORCEINLINE channel_severity_filter_actor< typename ChannelDescriptorT::value_type, SeverityT, fallback_to_none, fallback_to_none, less, SeverityCompareT, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< typename ChannelDescriptorT::value_type, SeverityT, fallback_to_none, fallback_to_none, less, SeverityCompareT, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_keyword< ChannelDescriptorT, ActorT > const& channel_keyword, attribute_name const& severity_name, SeverityCompareT const& severity_compare)
 {
-    typedef channel_severity_filter_actor< typename ChannelDescriptorT::value_type, SeverityT, fallback_to_none, fallback_to_none, less, SeverityCompareT, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< typename ChannelDescriptorT::value_type, SeverityT, fallback_to_none, fallback_to_none, less, SeverityCompareT, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_keyword.get_name(), severity_name, fallback_to_none(), fallback_to_none(), less(), severity_compare) }};
     return result_type(act);
@@ -407,10 +411,10 @@ channel_severity_filter(attribute_keyword< ChannelDescriptorT, ActorT > const& c
 
 //! \overload
 template< typename ChannelT, typename SeverityDescriptorT, template< typename > class ActorT, typename SeverityCompareT >
-BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, SeverityCompareT, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, SeverityCompareT, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_name const& channel_name, attribute_keyword< SeverityDescriptorT, ActorT > const& severity_keyword, SeverityCompareT const& severity_compare)
 {
-    typedef channel_severity_filter_actor< ChannelT, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, SeverityCompareT, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< ChannelT, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, SeverityCompareT, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_name, severity_keyword.get_name(), fallback_to_none(), fallback_to_none(), less(), severity_compare) }};
     return result_type(act);
@@ -418,10 +422,10 @@ channel_severity_filter(attribute_name const& channel_name, attribute_keyword< S
 
 //! \overload
 template< typename ChannelDescriptorT, typename SeverityDescriptorT, template< typename > class ActorT, typename SeverityCompareT >
-BOOST_FORCEINLINE channel_severity_filter_actor< typename ChannelDescriptorT::value_type, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, SeverityCompareT, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< typename ChannelDescriptorT::value_type, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, SeverityCompareT, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_keyword< ChannelDescriptorT, ActorT > const& channel_keyword, attribute_keyword< SeverityDescriptorT, ActorT > const& severity_keyword, SeverityCompareT const& severity_compare)
 {
-    typedef channel_severity_filter_actor< typename ChannelDescriptorT::value_type, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, SeverityCompareT, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< typename ChannelDescriptorT::value_type, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, less, SeverityCompareT, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_keyword.get_name(), severity_keyword.get_name(), fallback_to_none(), fallback_to_none(), less(), severity_compare) }};
     return result_type(act);
@@ -429,10 +433,10 @@ channel_severity_filter(attribute_keyword< ChannelDescriptorT, ActorT > const& c
 
 //! \overload
 template< typename SeverityT, typename ChannelT, typename ChannelFallbackT, typename ChannelTagT, template< typename > class ActorT, typename SeverityCompareT >
-BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, fallback_to_none, less, SeverityCompareT, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, fallback_to_none, less, SeverityCompareT, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_actor< ChannelT, ChannelFallbackT, ChannelTagT, ActorT > const& channel_placeholder, attribute_name const& severity_name, SeverityCompareT const& severity_compare)
 {
-    typedef channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, fallback_to_none, less, SeverityCompareT, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, fallback_to_none, less, SeverityCompareT, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_placeholder.get_name(), severity_name, channel_placeholder.get_fallback_policy(), fallback_to_none(), less(), severity_compare) }};
     return result_type(act);
@@ -440,10 +444,10 @@ channel_severity_filter(attribute_actor< ChannelT, ChannelFallbackT, ChannelTagT
 
 //! \overload
 template< typename ChannelT, typename SeverityT, typename SeverityFallbackT, typename SeverityTagT, template< typename > class ActorT, typename SeverityCompareT >
-BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, fallback_to_none, SeverityFallbackT, less, SeverityCompareT, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, fallback_to_none, SeverityFallbackT, less, SeverityCompareT, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_name const& channel_name, attribute_actor< SeverityT, SeverityFallbackT, SeverityTagT, ActorT > const& severity_placeholder, SeverityCompareT const& severity_compare)
 {
-    typedef channel_severity_filter_actor< ChannelT, SeverityT, fallback_to_none, SeverityFallbackT, less, SeverityCompareT, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< ChannelT, SeverityT, fallback_to_none, SeverityFallbackT, less, SeverityCompareT, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_name, severity_placeholder.get_name(), fallback_to_none(), severity_placeholder.get_fallback_policy(), less(), severity_compare) }};
     return result_type(act);
@@ -451,10 +455,10 @@ channel_severity_filter(attribute_name const& channel_name, attribute_actor< Sev
 
 //! \overload
 template< typename ChannelT, typename ChannelFallbackT, typename ChannelTagT, typename SeverityT, typename SeverityFallbackT, typename SeverityTagT, template< typename > class ActorT, typename SeverityCompareT >
-BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, SeverityFallbackT, less, SeverityCompareT, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, SeverityFallbackT, less, SeverityCompareT, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_actor< ChannelT, ChannelFallbackT, ChannelTagT, ActorT > const& channel_placeholder, attribute_actor< SeverityT, SeverityFallbackT, SeverityTagT, ActorT > const& severity_placeholder, SeverityCompareT const& severity_compare)
 {
-    typedef channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, SeverityFallbackT, less, SeverityCompareT, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, SeverityFallbackT, less, SeverityCompareT, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_placeholder.get_name(), severity_placeholder.get_name(), channel_placeholder.get_fallback_policy(), severity_placeholder.get_fallback_policy(), less(), severity_compare) }};
     return result_type(act);
@@ -474,10 +478,10 @@ channel_severity_filter(attribute_name const& channel_name, attribute_name const
 
 //! \overload
 template< typename SeverityT, typename ChannelDescriptorT, template< typename > class ActorT, typename SeverityCompareT, typename ChannelOrderT >
-BOOST_FORCEINLINE channel_severity_filter_actor< typename ChannelDescriptorT::value_type, SeverityT, fallback_to_none, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< typename ChannelDescriptorT::value_type, SeverityT, fallback_to_none, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_keyword< ChannelDescriptorT, ActorT > const& channel_keyword, attribute_name const& severity_name, SeverityCompareT const& severity_compare, ChannelOrderT const& channel_order)
 {
-    typedef channel_severity_filter_actor< typename ChannelDescriptorT::value_type, SeverityT, fallback_to_none, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< typename ChannelDescriptorT::value_type, SeverityT, fallback_to_none, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_keyword.get_name(), severity_name, fallback_to_none(), fallback_to_none(), channel_order, severity_compare) }};
     return result_type(act);
@@ -485,10 +489,10 @@ channel_severity_filter(attribute_keyword< ChannelDescriptorT, ActorT > const& c
 
 //! \overload
 template< typename ChannelT, typename SeverityDescriptorT, template< typename > class ActorT, typename SeverityCompareT, typename ChannelOrderT >
-BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_name const& channel_name, attribute_keyword< SeverityDescriptorT, ActorT > const& severity_keyword, SeverityCompareT const& severity_compare, ChannelOrderT const& channel_order)
 {
-    typedef channel_severity_filter_actor< ChannelT, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< ChannelT, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_name, severity_keyword.get_name(), fallback_to_none(), fallback_to_none(), channel_order, severity_compare) }};
     return result_type(act);
@@ -496,10 +500,10 @@ channel_severity_filter(attribute_name const& channel_name, attribute_keyword< S
 
 //! \overload
 template< typename ChannelDescriptorT, typename SeverityDescriptorT, template< typename > class ActorT, typename SeverityCompareT, typename ChannelOrderT >
-BOOST_FORCEINLINE channel_severity_filter_actor< typename ChannelDescriptorT::value_type, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< typename ChannelDescriptorT::value_type, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_keyword< ChannelDescriptorT, ActorT > const& channel_keyword, attribute_keyword< SeverityDescriptorT, ActorT > const& severity_keyword, SeverityCompareT const& severity_compare, ChannelOrderT const& channel_order)
 {
-    typedef channel_severity_filter_actor< typename ChannelDescriptorT::value_type, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< typename ChannelDescriptorT::value_type, typename SeverityDescriptorT::value_type, fallback_to_none, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_keyword.get_name(), severity_keyword.get_name(), fallback_to_none(), fallback_to_none(), channel_order, severity_compare) }};
     return result_type(act);
@@ -507,10 +511,10 @@ channel_severity_filter(attribute_keyword< ChannelDescriptorT, ActorT > const& c
 
 //! \overload
 template< typename SeverityT, typename ChannelT, typename ChannelFallbackT, typename ChannelTagT, template< typename > class ActorT, typename SeverityCompareT, typename ChannelOrderT >
-BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_actor< ChannelT, ChannelFallbackT, ChannelTagT, ActorT > const& channel_placeholder, attribute_name const& severity_name, SeverityCompareT const& severity_compare, ChannelOrderT const& channel_order)
 {
-    typedef channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, fallback_to_none, ChannelOrderT, SeverityCompareT, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_placeholder.get_name(), severity_name, channel_placeholder.get_fallback_policy(), fallback_to_none(), channel_order, severity_compare) }};
     return result_type(act);
@@ -518,10 +522,10 @@ channel_severity_filter(attribute_actor< ChannelT, ChannelFallbackT, ChannelTagT
 
 //! \overload
 template< typename ChannelT, typename SeverityT, typename SeverityFallbackT, typename SeverityTagT, template< typename > class ActorT, typename SeverityCompareT, typename ChannelOrderT >
-BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, fallback_to_none, SeverityFallbackT, ChannelOrderT, SeverityCompareT, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, fallback_to_none, SeverityFallbackT, ChannelOrderT, SeverityCompareT, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_name const& channel_name, attribute_actor< SeverityT, SeverityFallbackT, SeverityTagT, ActorT > const& severity_placeholder, SeverityCompareT const& severity_compare, ChannelOrderT const& channel_order)
 {
-    typedef channel_severity_filter_actor< ChannelT, SeverityT, fallback_to_none, SeverityFallbackT, ChannelOrderT, SeverityCompareT, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< ChannelT, SeverityT, fallback_to_none, SeverityFallbackT, ChannelOrderT, SeverityCompareT, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_name, severity_placeholder.get_name(), fallback_to_none(), severity_placeholder.get_fallback_policy(), channel_order, severity_compare) }};
     return result_type(act);
@@ -529,10 +533,10 @@ channel_severity_filter(attribute_name const& channel_name, attribute_actor< Sev
 
 //! \overload
 template< typename ChannelT, typename ChannelFallbackT, typename ChannelTagT, typename SeverityT, typename SeverityFallbackT, typename SeverityTagT, template< typename > class ActorT, typename SeverityCompareT, typename ChannelOrderT >
-BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, SeverityFallbackT, ChannelOrderT, SeverityCompareT, std::allocator< void >, ActorT >
+BOOST_FORCEINLINE channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, SeverityFallbackT, ChannelOrderT, SeverityCompareT, std::allocator< detail::none >, ActorT >
 channel_severity_filter(attribute_actor< ChannelT, ChannelFallbackT, ChannelTagT, ActorT > const& channel_placeholder, attribute_actor< SeverityT, SeverityFallbackT, SeverityTagT, ActorT > const& severity_placeholder, SeverityCompareT const& severity_compare, ChannelOrderT const& channel_order)
 {
-    typedef channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, SeverityFallbackT, ChannelOrderT, SeverityCompareT, std::allocator< void >, ActorT > result_type;
+    typedef channel_severity_filter_actor< ChannelT, SeverityT, ChannelFallbackT, SeverityFallbackT, ChannelOrderT, SeverityCompareT, std::allocator< detail::none >, ActorT > result_type;
     typedef typename result_type::terminal_type terminal_type;
     typename result_type::base_type act = {{ terminal_type(channel_placeholder.get_name(), severity_placeholder.get_name(), channel_placeholder.get_fallback_policy(), severity_placeholder.get_fallback_policy(), channel_order, severity_compare) }};
     return result_type(act);
